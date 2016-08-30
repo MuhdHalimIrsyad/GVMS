@@ -1,0 +1,12 @@
+.dataTables_filter {
+   display: none;
+}
+
+.required:before {
+	content: "* ";
+	color: red;
+}
+
+tfoot {
+    display: table-header-group;
+}
