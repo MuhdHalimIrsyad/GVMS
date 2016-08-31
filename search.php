@@ -110,13 +110,14 @@
 								<td>".$row['description']."</td>
 								<td>".$row['status']."</td>
 								<td>".$row['repetition']."</td>
-								<td>".$row['noOfPersonnel']."</td>
-								<td>". date("d/m/Y", strtotime($row['startDate']))."</td>";
-								if(strtotime($row['endDate']) == -1){
-									echo "<td>". date("d/m/Y", strtotime($row['endDate']))."</td>";
+								<td>".$row['noofpersonnel']."</td>
+								<td>". date("d/m/Y", strtotime($row['startdate']))."</td>";
+								if(strtotime($row['enddate']) == NULL){
+									echo "<td></td>";
 								}
 								else{
-									echo "<td></td>";
+									echo "<td>". date("d/m/Y", strtotime($row['enddate']))."</td>";
+									
 								}
 								
 								while ($row1 = pg_fetch_array($queryLocation)) {
@@ -215,21 +216,49 @@ $('#searchName').on( 'keyup', function () {
         .draw();
 } );
 
-// #search for start date
-$('#startDate').on( 'keyup', function () {
-    table
-        .columns( 0 )
-        .search( this.value )
-        .draw();
-} );
 
-// #search for end date
-$('#endDate').on( 'keyup', function () {
-    table
-        .columns( 0 )
-        .search( this.value )
-        .draw();
-} );
+
+$(document).ready(function() {
+      // Add event listeners to the two range filtering inputs
+      $('#startDate').keyup( function() { table.draw(); } );
+$('#endDate').keyup( function() { table.draw(); } );
+  } );
+  
+ $.fn.dataTableExt.afnFiltering.push(
+            function( oSettings, aData, iDataIndex ) {
+                var iFini = document.getElementById('startDate').value;
+                var iFfin = document.getElementById('endDate').value;
+                var iStartDateCol = 5;
+                var iEndDateCol = 6;
+
+    iFini=iFini.substring(0,2) + iFini.substring(3,5)+ iFini.substring(6,10)
+    iFfin=iFfin.substring(0,2) + iFfin.substring(3,5)+ iFfin.substring(6,10)       
+
+    var datofini=aData[iStartDateCol].substring(0,2) + aData[iStartDateCol].substring(3,5)+ aData[iStartDateCol].substring(6,10);
+    var datoffin=aData[iEndDateCol].substring(0,2) + aData[iEndDateCol].substring(3,5)+ aData[iEndDateCol].substring(6,10);
+
+
+                if ( iFini == "" && iFfin == "" )
+                {
+                    return true;
+                }
+                else if ( iFini <= datofini && iFfin == "")
+                {
+                    return true;
+                }
+                else if ( iFfin >= datoffin && iFini == "")
+                {
+                    return true;
+                }
+                else if (iFini <= datofini && iFfin >= datoffin)
+                {
+                    return true;
+                }
+                return false;
+            }
+        );
+
+
 	</script>
 	
 	

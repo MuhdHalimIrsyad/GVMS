@@ -61,7 +61,7 @@
 			
 			<div class=row>
 				<div class="large-3 columns required" >Password:</div>
-				<div class="large-5 columns"><input type="password" name="passsword"></div>	
+				<div class="large-5 columns"><input type="password" name="password"></div>	
 				<div class="large-4 columns"></div>
 			</div>
 			
@@ -95,6 +95,13 @@
 				<div class="large-4 columns"></div>
 			</div>
 			<br>
+			
+			<div class=row>
+				<div class="large-3 columns" >Contact No:</div>
+				<div class="large-5 columns"><input type="text" name="contactNo"></div>	
+				<div class="large-4 columns"></div>
+			</div>
+			
 			<div class=row>
 				<div class="large-3 columns" >Resume:</div>
 				<div class="large-5 columns"><input type="file" name="resume"></div>	

@@ -1,9 +1,6 @@
 <html>
 	<head>
-		
-		
-		
-		
+			
 	</head>
 	<body>
 	

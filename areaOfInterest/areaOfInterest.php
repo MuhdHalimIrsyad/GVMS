@@ -11,7 +11,7 @@
 	</head>
 	
 	<body>
-		<select id="example-multiple-optgroups" multiple="multiple" name="select[]">
+		<select id="areaOfInterest" multiple="multiple" name="areaOfInterest[]">
 		<?php
 		
 		$host = "localhost"; 
@@ -39,14 +39,25 @@
 	</select>
 
 <script type="text/javascript">
-    $('#example-multiple-optgroups').multiselect({
+    $('#areaOfInterest').multiselect({
 		includeSelectAllOption: true,
 		enableFiltering: true,
 		enableClickableOptGroups: true,
 		enableCollapsibleOptGroups: true,
 		includeSelectAllOption: true,
-		enableCaseInsensitiveFiltering: true
-		});
+		enableCaseInsensitiveFiltering: true,
+		nonSelectedText: "Select your abilities/interest",
+		/*
+		onChange: function(option, checked) {
+			var interest = $('#areaOfInterest option:selected');
+			var selected = [];
+			$(brands).each(function(index, interest){
+				selected.push([$(this).val()]);
+			});
+			
+		}
+		*/
+	});
 </script>
 
 	</body>

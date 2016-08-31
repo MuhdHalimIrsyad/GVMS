@@ -15,7 +15,7 @@ if(session_id() == '') {
 		<ul class="title-area">
 			<li class="name">
 				<?php
-				if(!isset($_SESSION['logged']) && !$_SESSION['logged']=='yes') {
+				if(!isset($_SESSION['logged']) || !$_SESSION['logged']=='yes') {
 					echo '<h1><a href="#">Volunteer Management System</a></h1>';
 				}else{
 					echo '<section class="top-bar-section">
