@@ -13,7 +13,7 @@ function emailExists($email) {
 	$con = pg_connect("host=$host dbname=$db user=$user password=$pass")
     or die ("Could not connect to server\n" . pg_last_error()); 
 	
-	$query = 'SELECT * FROM users WHERE "emailAddress" = ' . "'" . $email . "'";
+	$query = 'SELECT * FROM users WHERE emailaddress = ' . "'" . $email . "'";
 
 	$rs = pg_query($con, $query) or die (pg_last_error($con));
 	
@@ -33,7 +33,7 @@ function checkPassword($email, $password) {
 	$con = pg_connect("host=$host dbname=$db user=$user password=$pass")
     or die ("Could not connect to server\n" . pg_last_error()); 
 	
-	$query = 'SELECT * FROM users WHERE "emailAddress" = ' . "'" . $email . "'";
+	$query = 'SELECT * FROM users WHERE emailaddress = ' . "'" . $email . "'";
 
 	$rs = pg_query($con, $query) or die (pg_last_error($con));
 	
