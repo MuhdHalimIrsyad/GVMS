@@ -211,7 +211,7 @@ table.columns( '.select-filter' ).every( function () {
 // #search for project name
 $('#searchName').on( 'keyup', function () {
     table
-        .columns( 0 )
+        .columns( ':contains(Name)' )
         .search( this.value )
         .draw();
 } );
