@@ -12,21 +12,21 @@
         
         while ($projectRow = pg_fetch_array($rs)) {
             $projectArray['name'] = $projectRow['name'];
-            $projectArray['startDate'] = date("d/m/Y", strtotime($projectRow['startDate']));
-            if (strtotime($projectRow['endDate']) == -1) {
-                $projectArray['endDate'] = "-";
+            $projectArray['startdate'] = date("d/m/Y", strtotime($projectRow['startdate']));
+            if (strtotime($projectRow['enddate']) == -1) {
+                $projectArray['enddate'] = "-";
             } else {
-                $projectArray['endDate'] = date("d/m/Y", strtotime($projectRow['endDate']));
+                $projectArray['enddate'] = date("d/m/Y", strtotime($projectRow['enddate']));
             }
             $projectArray['repetition'] = $projectRow['repetition'];
             $projectArray['description'] = $projectRow['description'];
-            $projectArray['visibility'] = $projectRow['visibility'];
+            $projectArray['visiblity'] = $projectRow['visiblity'];
             if ($projectRow['noofpersonnel'] == NULL) {
                 $projectArray['noofpersonnel'] = 0;
             } else {
-                $projectArray['noofpersonnel'] = $eventRow['noofpersonnel'];
+                $projectArray['noofpersonnel'] = $projectRow['noofpersonnel'];
             }
-            $projectArray['status'] = $eventRow['status'];
+            $projectArray['status'] = $projectRow['status'];
         }
         
         return $projectArray;
@@ -36,7 +36,7 @@
         
         include 'dbConnection.php';
         
-        $query = "SELECT * FROM projectOwnership WHERE projectid = ".$projectID.";";
+        $query = "SELECT * FROM projectownership WHERE projectid = ".$projectID.";";
         
         $rs = pg_query($con, $query) or die (pg_last_error($con));
         
@@ -71,7 +71,7 @@
         
         include 'dbConnection.php';
         
-        $query = "SELECT s.name AS skillName FROM (SELECT psr.skillid FROM projectSkillRequired psr WHERE psr.projectid = ".$projectID.") AS projectSR, skillDefinition s WHERE"
+        $query = "SELECT * FROM (SELECT psr.skillid FROM projectSkillRequired psr WHERE psr.projectid = ".$projectID.") AS projectSR, skillDefinition s WHERE"
                 . " projectSR.skillid = s.skillid;";
         
         $rs = pg_query($con, $query) or die (pg_last_error($con));
@@ -79,8 +79,10 @@
         $projectSkillArray = [];
         
         while ($projectSkillRow = pg_fetch_array($rs)) {
-            array_push($projectSkillArray, $projectSkillRow['skillName']);
+            array_push($projectSkillArray, $projectSkillRow['name']);
         }
+        
+        return $projectSkillArray;
     }
 
     function projectLocation($projectID) {
@@ -116,7 +118,7 @@
         include 'dbConnection.php';
         
         $query = "INSERT INTO volunteerApp(projectid, skillid, userid, appstatus, appdescription) VALUES (".$projectid.
-                ", ".$skillid.", ".$userid.", 'Processing', ".$description.");";
+                ", ".$skillid.", ".$userid.", 'Processing', '".$description."');";
         
         $rs = pg_query($con, $query) or die (pg_last_error($con));
         
