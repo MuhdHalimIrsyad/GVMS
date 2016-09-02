@@ -1,12 +1,225 @@
+/*
+Author: Redha, Joe & Halim
+Version: 1.0
+
+Moqups version's blue theme color: #007EB7
+*/
+
 .dataTables_filter {
    display: none;
-}
-
-.required:before {
-	content: "* ";
-	color: red;
 }
 
 tfoot {
     display: table-header-group;
 }
+
+
+/* General / Foundation Overrides */
+button:hover, button:focus,
+button{
+    background-color: initial;
+    color: inherit;
+}
+button.disabled{
+	background-color: #E6E6E6;
+	border-color: initial;
+}
+h1, h2, h3, h4, h5, h6{
+    color: inherit;
+    font-weight: bold;
+}
+html, body{ height: initial !important; }
+p, ul, input, textarea{
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+}
+body a{
+    box-sizing: border-box;
+    display: inline-block;
+    color: inherit;
+}
+body a:focus, body a:active{
+    color: inherit;
+}
+/* change this to whatever universal anchor link color specified in design */
+body a:hover{ color: inherit; }
+p, ul, input, textarea{
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+}
+
+/* Foundation container size */
+.row{
+/*    max-width: 1050px;*/
+    max-width: 64.125rem;
+}
+
+/* FOUNDATION OVERRIDES END */
+
+html{
+    background-color: white;
+}
+
+body{
+    /* Uncomment this to make the website unresponsive, and use small columns in the html */
+    /* min-width: 1050px; */
+    font-family: 'Open Sans', Arial, sans-serif;
+/*    background-color: #a8a8a8;*/
+    color: #3D3D3D;
+    font-size: 14px;
+}
+
+/* These are martin/foundation extras */
+body input,
+body textarea{
+    margin-bottom: 8px;
+}
+
+textarea,
+textarea[rows]{
+    height: 100px;
+}
+
+/* HEADER */
+header#navbar{
+	min-height: 3.125em;
+	border: 1px solid #B4B4B4;
+	margin-top: 1em;
+	margin-bottom: 1em;
+/*
+	padding-top: .5em;
+	padding-bottom: .5em;
+*/
+	box-sizing: content-box;
+}
+#navbar h1 a{
+	font-size: 53%;
+	margin-left: .5rem;
+}
+#navbar nav ul li{
+	display: inline-block;
+}
+#navbar nav ul li > a{
+	display: table-cell;
+	vertical-align: middle;
+/*	min-width: 5.313em;*/
+	padding: 0 .5em;
+	height: 3.125em;
+	text-align: center;
+	font-weight: bold;
+	transition: background-color .5s, color .5s;
+}
+#navbar nav ul li.current-page > a{
+	background-color: #09cc2f;
+	color: white;
+}
+header nav ul{ font-size: 0; list-style-type: none; margin: 0; line-height: 0; }
+header nav ul li{ font-size: 0.875rem; position: relative; }
+
+header nav > ul > li.current_page_item a,
+header nav > ul > li.current_menu_c a,
+header nav > ul > li.current-menu-item a,
+header nav > ul > li.current-menu-parent a,
+header nav > ul > li.current-menu-ancestor a,
+header nav > ul > li.current-post-ancestor a,
+header nav > ul > li.current-page-ancestor a,
+header nav > ul > li:hover a{
+	background-color: #007EB7 !important;
+	color: white;
+}
+/* SUBNAVIGATION */
+/*
+header nav ul ul{
+    margin: 0;
+    position: absolute;
+    z-index: 50;
+    left: -2.5rem;
+    right: -3.5rem;
+    padding: 0.6rem 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.15s, opacity 0.15s linear;
+    background-color: transparent;
+}
+header nav li:hover > ul,
+header nav li > ul:hover{
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+header nav ul ul > li{
+    width: 100%;
+    padding: 0.5em 1em 0.5em 2em;
+    border: 1px solid #e5e5e5;
+    border-bottom: none;
+    background-color: #F1F1F1;
+}
+header nav ul ul > li:last-child{
+    border-bottom: 1px solid #e5e5e5;
+}
+*/
+/* SUBNAVIGATION */
+/* HEADER END */
+
+/* PAGE - HOME */
+/* PAGE - HOME END */
+
+/* PAGE - ABOUT US */
+/* PAGE - ABOUT US END */
+
+/* PAGE - CONTACT US */
+/* PAGE - CONTACT US END */
+
+/* FOOTER */
+/* FOOTER END */
+
+/* UTILITY CLASSES */
+.margin0{ margin:0 }
+.inlineb{ display:inline-block !important; }
+.blockwidth{ width: 100%; }
+.textuppercase{ text-transform: uppercase; }
+.textbold{ font-weight: bold; }
+.textnormal{ font-weight: normal; }
+.textred { color:red; }
+.bluebg{ background-color: #007EB7; color: white; }
+.required:before {
+	content: "* ";
+	color: red;
+}
+span.helper{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    font-size: 0;
+}
+.absolute{ position: absolute; }
+.relative{ position: relative; }
+.extendfull, .extendleft
+{
+    padding-left: 35vw;
+    margin-left: -35vw;
+}
+.extendfull, .extendright
+{
+    padding-right: 35vw;
+    margin-right: -35vw;
+}
+.img-responsive{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+.img-maxwidth{
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+.img-maxheight{
+    max-height: 100%;
+    height: 100%;
+    width: auto;
+}
+
+/* UTILITY CLASSES END */
