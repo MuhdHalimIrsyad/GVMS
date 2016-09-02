@@ -57,8 +57,13 @@ if(session_id() == '') {
 	<div class="small-6 column">
 	<?php
 	}
-?>
+	if(isset($_SESSION['logged']) && $_SESSION['logged']=='yes')
+	{
+		?>
 		<img src="images/placeholders/playerlevel.PNG" alt="playerlevel.png">
+		<?php
+	}
+?>
 		<nav class="inlineb right">
 			<ul>
 				<?php
