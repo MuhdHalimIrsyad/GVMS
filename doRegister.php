@@ -4,33 +4,45 @@ if(count($_POST)>0) {
 	include 'users.php';
 	
 	$errorArray = array();
-	/*
-	if (isset($_POST['areaOfInterest'])) {
-		foreach ($_POST['areaOfInterest'] as $selectedOption)
-			$warning .= $selectedOption."<br>";
-	}
-	*/
 	$photoFormatAllowed = array('gif', 'png', 'jpg');
-	$photoFileName = $_FILES['photo']['tmp_name'];
+	$photoFileName = $_FILES['photo']['name'];
 	$photoExt = pathinfo($photoFileName, PATHINFO_EXTENSION);
 	$photo = "NULL";
 	
+	/*
+	if(isset($_POST['linkedInUrl']) || !empty($_POST['linkedInUrl']) && !filter_var($_POST['linkedInUrl'], FILTER_VALIDATE_URL) === true) {
+		array_push($errorArray, "Please enter a valid URL.");
+	}
+	*/
+		
+	
+	if (isset($_POST['areaOfInterest']) && !empty($_POST['areaOfInterest'])) {
+					
+					$areaOfInterest = array();
+					//foreach ($_POST['areaOfInterest'] as $selectedOption => $value)
+					
+							//array_push($areaOfInterest, $selectedOption);
+	}
+				
 	if (is_uploaded_file($_FILES['photo']['tmp_name'])) {
 		if (!in_array($photoExt,$photoFormatAllowed)) {
 			array_push($errorArray, "Only gif, png, jpg allowed for photo.");
 		}else {
-			$p=fopen($photoFileName,'r');
-			$data=fread($p,filesize($fi));
-			$photo= pg_escape_bytea($data); 
+			$photo = $_FILES['photo'];
 		}	
 	}
 	
 	$resumeFormatAllowed = array('doc', 'docx', 'pdf');
-	$resumeFileName = $_FILES['resume']['tmp_name'];
+	$resumeFileName = $_FILES['resume']['name'];
 	$resumeExt = pathinfo($resumeFileName, PATHINFO_EXTENSION);
 	
-	if (is_uploaded_file($_FILES['resume']['tmp_name']) && !in_array($ext,$resumeFormatAllowed)) {
+	if (is_uploaded_file($_FILES['resume']['tmp_name'])) {
+	
+		if (!in_array($resumeExt,$resumeFormatAllowed)) {
 			array_push($errorArray, "Only doc, docx, pdf allowed for resume.");
+		}else {
+			$resume = $_FILES['resume'];
+		}
 	}
 	
 	if (empty($_POST) === false) {
@@ -45,7 +57,6 @@ if(count($_POST)>0) {
 			if (emailExists($_POST['email']) > 0) {
 				array_push($errorArray,"Sorry, the email address " . $_POST['email'] . " is already in used.");
 			}else {
-				array_push($errorArray,"FUCK U");
 				$dob = "NULL";
 				$resume = "NULL";
 				$linkedIn = "NULL";
@@ -56,8 +67,31 @@ if(count($_POST)>0) {
 				$areaOfInterest = "";
 				
 				if (isset($_POST['dob']) && !empty($_POST['dob'])) {
-					$dob = $_POST['dob'];
-				}	
+					$dob = str_replace('/', '-', $_POST['dob']);
+					$dob = "'" . date('Y-m-d', strtotime($dob)) . "'";
+				}
+				if (isset($_POST['occupation']) && !empty($_POST['occupation'])) {
+					$occupation = "'" . $_POST['occupation'] . "'";
+				}
+				if (isset($_POST['biography']) && !empty($_POST['biography'])) {
+					$bio = "'" . $_POST['biography'] . "'";
+				}
+				if (isset($_POST['contactNo']) && !empty($_POST['contactNo'])) {
+					$contactNo = "'" . $_POST['contactNo'] . "'";
+				}
+				if (isset($_POST['linkedInUrl']) && !empty($_POST['linkedInUrl'])) {
+					$linkedIn = "'" . $_POST['linkedInUrl'] . "'";
+				}
+				if (isset($_POST['referral']) && !empty($_POST['referral'])) {
+					$referralID = $_POST['referral'];
+				}
+
+				if (isset($_POST['areaOfInterest']) && !empty($_POST['areaOfInterest'])) {
+					$areaOfInterest = array();
+					foreach ($_POST['areaOfInterest'] as $selectedOption)
+						array_push($areaOfInterest, $selectedOption);
+				}
+					
 				if (createVolunteer($_POST['firstName'], $_POST['lastName'], $dob, $_POST['email'], $_POST['password'], $photo, $occupation, $bio, $areaOfInterest, $resume, $linkedIn, $contactNo, $referralID) ==true) {
 					header("Location: login.php");
 				}else {
@@ -65,10 +99,6 @@ if(count($_POST)>0) {
 				}
 			}
 		}
-	}
-	
-	if(isset($_POST['linkedInUrl']) && !empty($_POST['linkedInUrl']) && !filter_var($_POST['linkedInUrl'], FILTER_VALIDATE_URL) === true) {
-		array_push($errorArray, "Please enter a valid URL.");
 	}
 	/**
 	
