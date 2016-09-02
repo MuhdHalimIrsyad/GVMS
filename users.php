@@ -5,13 +5,7 @@
 //$num_cols = pg_num_fields($rs);
 
 function emailExists($email) {
-	$host = "localhost"; 
-	$user = "postgres"; 
-	$pass = "hometown"; 
-	$db = "gamified"; 
-
-	$con = pg_connect("host=$host dbname=$db user=$user password=$pass")
-    or die ("Could not connect to server\n" . pg_last_error()); 
+	include 'dbConnection.php'; 
 	
 	$query = 'SELECT * FROM users WHERE emailaddress = ' . "'" . $email . "'";
 
@@ -25,13 +19,7 @@ function emailExists($email) {
 	
 function checkPassword($email, $password) {
 	
-	$host = "localhost"; 
-	$user = "postgres"; 
-	$pass = "hometown"; 
-	$db = "gamified"; 
-
-	$con = pg_connect("host=$host dbname=$db user=$user password=$pass")
-    or die ("Could not connect to server\n" . pg_last_error()); 
+	include 'dbConnection.php';
 	
 	$query = 'SELECT * FROM users WHERE emailaddress = ' . "'" . $email . "'";
 
@@ -52,13 +40,7 @@ function checkPassword($email, $password) {
 
 function createVolunteer($firstName, $lastName, $dob, $email, $password, $photo, $occupation, $bio, $areaOfInterest, $resume, $linkedIn, $contactNo, $referralID) {
 	
-	$host = "localhost"; 
-	$user = "postgres"; 
-	$pass = "hometown"; 
-	$db = "gamified"; 
-
-	$con = pg_connect("host=$host dbname=$db user=$user password=$pass")
-    or die ("Could not connect to server\n" . pg_last_error()); 
+	include 'dbConnection.php';
 	
 	$query = "INSERT INTO users VALUES(DEFAULT, '" . $firstName . "', '" . $lastName . "', '" . $email . "', '" . password_hash($password, PASSWORD_BCRYPT) . "',DEFAULT,'"
 	. "volunteer'," . "NULL) RETURNING userid";

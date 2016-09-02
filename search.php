@@ -71,14 +71,7 @@
 		
         <tbody>
 			<?php
-					$host = "localhost"; 
-					$user = "postgres"; 
-					$pass = "hometown"; 
-					$db = "gamified"; 
-
-					$con = pg_connect("host=$host dbname=$db user=$user password=$pass")
-					or die ("Could not connect to server\n" . pg_last_error()); 
-	
+					include 'dbConnection.php';
 					$query = 'SELECT * FROM project';
 	
 					$rs = pg_query($con, $query) or die (pg_last_error($con));

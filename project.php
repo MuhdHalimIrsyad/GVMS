@@ -129,5 +129,26 @@
         return FALSE;
         
     }
+    
+    function showProjectStatus($userid, $projectid, $skillid) {
+        
+        include 'dbConnection.php';
+        
+        $query = "SELECT * FROM volunteerapp WHERE projectid = ".$projectid." AND skillid = ".$skillid." AND userid = ".$userid.";";
+        
+        $rs = pg_query($con, $query) or die (pg_last_error($con));
+        
+        $projectDetail = getProject($projectid);
+        $projectOwner = getProjectOwner($projectid);
+        $projectLocation = projectLocation($projectid);
+        
+        if (pg_num_rows($rs)) {
+            //Redha, I don't know how you want to display. But this side is for volunteer who have applied for the project
+        } else {
+            //This side is for volunteer who have yet to register for the project
+            $projectSkillID = getProjectSkillID($projectid);
+            $projectSkill = getProjectSkillRequired($projectid);
+        }
+    }
 ?>
 
