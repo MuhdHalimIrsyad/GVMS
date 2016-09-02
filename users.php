@@ -1,7 +1,4 @@
 <?php
-	
-
-
 //$num_cols = pg_num_fields($rs);
 
 function emailExists($email) {
@@ -12,9 +9,14 @@ function emailExists($email) {
 	$rs = pg_query($con, $query) or die (pg_last_error($con));
 	
 	$num_rows = pg_num_rows($rs);
-	pg_close($con); 
+	$result = pg_fetch_array($rs);
+	$userId = $result['userid'];
+	pg_close($con);
+	if ($num_rows >0) {
+		return $userId;
+	}
 	
-	return $num_rows;
+	return -1;
 }
 	
 function checkPassword($email, $password) {

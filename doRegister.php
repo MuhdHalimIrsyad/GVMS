@@ -54,7 +54,7 @@ if(count($_POST)>0) {
 				}
 		}
 		if (empty($errorArray) === true) {
-			if (emailExists($_POST['email']) > 0) {
+			if (emailExists($_POST['email']) != -1) {
 				array_push($errorArray,"Sorry, the email address " . $_POST['email'] . " is already in used.");
 			}else {
 				$dob = "NULL";

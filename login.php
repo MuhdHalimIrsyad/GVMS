@@ -38,10 +38,6 @@
 				<div class="large-8 columns"><a href="#">Forget your password?</a></div>
 			</div>
 		</div>
-
-	
-	
-	
 	</form>
 
 		<script src="js/vendor/jquery.js"></script>
