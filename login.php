@@ -1,16 +1,12 @@
 <html>
-	<head>
-			
-	</head>
-	<body>
-	
 	<?php
 		session_start();
 		$warning = "";
 		include 'doLogin.php';
 		include_once('topBar.php')
 	?>
-
+	<body>
+	
 	<div class="row">
 		<center><div class="large-12 columns"><h3>Volunteer Login</h3></div></center>
 	</div>

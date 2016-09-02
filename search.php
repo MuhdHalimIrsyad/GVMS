@@ -6,23 +6,6 @@
 		session_start();
 }
 ?>	
-<head>
-		<script src="js/jquery-1.12.3.js"></script>
-		<link rel="stylesheet" href="css/bootstrap-3.3.2.min.css" type="text/css">
-		<link rel="stylesheet" href="css/foundation.min.css">
-		<link rel="stylesheet" href="css/dataTables.foundation.min.css">
-		
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/jquery.dataTables.min.css">
-		<script src="js/datepicker/jquery-ui.js"></script>
-		<script>
-			$( function() {
-				 $("#startDate").datepicker({ dateFormat: "dd/mm/yy" })
-				 $("#endDate").datepicker({ dateFormat: "dd/mm/yy" })
-			} );
-		</script>
-
-</head>
 <body>
 	
 	<div class="row">

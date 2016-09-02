@@ -5,30 +5,14 @@
 	include_once('topBar.php')
 	?>
 	
-	<head>
-		<link rel="stylesheet" href="css/bootstrap-3.3.2.min.css" type="text/css">
-
-		<link rel="stylesheet" href="css/normalize.css">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/foundation.css">
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-		<script src="js/vendor/jquery.js"></script>
-		<script src="js/datepicker/jquery-ui.js"></script>
-		<script>
-			$( function() {
-				 $("#datepicker").datepicker({ dateFormat: "dd/mm/yy" })
-			} );
-		</script>
-		<script src="js/vendor/modernizr.js"></script>
-	</head>
 	<body>
 	
 
-	<div class="row">
-		<center><div class="large-12 columns"><h3>Volunteer Registration</h3></div></center>
-	</div>
-	
-	<form action='' method='POST' enctype="multipart/form-data">	
+		<div class="row">
+			<center><div class="large-12 columns"><h3>Volunteer Registration</h3></div></center>
+		</div>
+
+		<form action='' method='POST' enctype="multipart/form-data">	
 		
 		
 		<center><div class="large-12 columns" style="border: 0px solid #466d98;">
@@ -125,11 +109,6 @@
 				<div class="large-12 columns"><input class="button radius" type="submit" value="Register"></div>
 			</div>
 		</div>
-	</form>
-
-		<script src="js/foundation.min.js"></script>
-		<script>
-			$(document).foundation();
-		</script>
-		</body>
+		</form>
+	</body>
 </html>
