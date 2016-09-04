@@ -9,11 +9,13 @@ if(session_id() == '') {
 <!--	<link rel="stylesheet" href="css/foundation.css">-->
 <!--	<script src="js/vendor/modernizr.js"></script>-->
 
-<!--	<link rel="stylesheet" href="css/bootstrap-3.3.2.min.css" type="text/css">-->
+<!--	<link rel="stylesheet" href="css/bootstrap-3.3.2.css" type="text/css">-->
 	<link rel="stylesheet" href="css/foundation.min.css">
 	<link rel="stylesheet" href="css/dataTables.foundation.min.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="css/bootstrap-multiselect.css">
+	<link rel="stylesheet" href="css/custombootstrap.css">
 	
 	<?php /* redha: Ensure the main.css gets loaded LAST to ensure precedence above all other css */ ?>
 	<link rel="stylesheet" href="css/main.css">
@@ -22,8 +24,13 @@ if(session_id() == '') {
 	<!-- redha: seems like this is the latest 1.12.4 -->
 	<script type="text/javascript" src="js/vendor/jquery.js"></script>
 	<script type="text/javascript" src="js/foundation.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-3.3.2.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
 	<script type="text/javascript" src="js/datepicker/jquery-ui.js"></script>
 	<script type="text/javascript" src="main.js"></script>
+	
+
+		
 	
 </head>
 <header id="navbar" class="row collapse">
@@ -33,16 +40,16 @@ if(session_id() == '') {
 	if(!isset($_SESSION['logged']) || !$_SESSION['logged']=='yes') 
 	{
 	?>
-	<div class="small-8 column">
+	<div class="small-8 columns">
 		<h1><a href="#">Volunteer Management System</a></h1>
 	</div>
-	<div class="small-4 column">
+	<div class="small-4 columns">
 	<?php
 	} 
 	else 
 	{
 	?>
-	<div class="small-6 column">
+	<div class="small-6 columns">
 			<nav>
 				<ul>
 					<li><a href="#">Dashboard</a></li>
@@ -54,7 +61,7 @@ if(session_id() == '') {
 				</ul>
 			</nav>
 	</div>
-	<div class="small-6 column">
+	<div class="small-6 columns">
 	<?php
 	}
 	if(isset($_SESSION['logged']) && $_SESSION['logged']=='yes')

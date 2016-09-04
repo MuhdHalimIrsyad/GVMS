@@ -4,11 +4,6 @@ Version: 1.0
 
 Moqups version's blue theme color: #007EB7
 */
-
-.dataTables_filter {
-   display: none;
-}
-
 tfoot {
     display: table-header-group;
 }
@@ -37,13 +32,13 @@ p, ul, input, textarea{
 body a{
     box-sizing: border-box;
     display: inline-block;
-    color: inherit;
+/*    color: inherit;*/
 }
 body a:focus, body a:active{
     color: inherit;
 }
 /* change this to whatever universal anchor link color specified in design */
-body a:hover{ color: inherit; }
+/*body a:hover{ color: inherit; }*/
 p, ul, input, textarea{
     font-size: inherit;
     font-family: inherit;
@@ -55,8 +50,12 @@ p, ul, input, textarea{
 /*    max-width: 1050px;*/
     max-width: 64.125rem;
 }
+.column, .columns{
+  min-height: 1px;
+}
 
 /* FOUNDATION OVERRIDES END */
+
 
 html{
     background-color: white;
@@ -109,6 +108,7 @@ header#navbar{
 	height: 3.125em;
 	text-align: center;
 	font-weight: bold;
+	color: #3D3D3D;
 	transition: background-color .5s, color .5s;
 }
 #navbar nav ul li.current-page > a{
@@ -127,7 +127,7 @@ header nav > ul > li.current-post-ancestor a,
 header nav > ul > li.current-page-ancestor a,
 header nav > ul > li:hover a{
 	background-color: #007EB7 !important;
-	color: white;
+	color: white !important;
 }
 /* SUBNAVIGATION */
 /*
@@ -163,6 +163,30 @@ header nav ul ul > li:last-child{
 /* SUBNAVIGATION */
 /* HEADER END */
 
+/* PAGE - SEARCH */
+#main .dataTables_filter {
+   display: none;
+}
+#main #project{
+	border: 1px solid #B4B4B4;
+}
+#main #project_wrapper #project_length{
+	margin: 0.8em 0;
+}
+#main .multiselect{
+	width: 100%;
+}
+#main #searchbox,
+#main .advsearch input{
+	text-align: center;
+}
+#main #project tr > td:first-child{
+	font-weight: bold;
+	color: #007EB7;
+}
+/* PAGE - SEARCH END */
+
+
 /* PAGE - HOME */
 /* PAGE - HOME END */
 
@@ -183,7 +207,7 @@ header nav ul ul > li:last-child{
 .textbold{ font-weight: bold; }
 .textnormal{ font-weight: normal; }
 .textred { color:red; }
-.bluebg{ background-color: #007EB7; color: white; }
+.bluebg{ background-color: #007EB7; color: white !important; }
 .required:before {
 	content: "* ";
 	color: red;
