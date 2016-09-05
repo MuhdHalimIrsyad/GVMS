@@ -204,14 +204,21 @@
 			.draw();
 	} );
 
+	$('#startDate').change(function () {
+		table.draw();
+	});
 
+	$('#endDate').change(function () {
+		table.draw();
+	});
 
+		/*
 	$(document).ready(function() {
 		  // Add event listeners to the two range filtering inputs
 		  $('#startDate').keyup( function() { table.draw(); } );
-	$('#endDate').keyup( function() { table.draw(); } );
+		$('#endDate').keyup( function() { table.draw(); } );
 	  } );
-
+*/
 	 $.fn.dataTableExt.afnFiltering.push(
 				function( oSettings, aData, iDataIndex ) {
 					var iFini = document.getElementById('startDate').value;
