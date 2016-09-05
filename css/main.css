@@ -190,8 +190,20 @@ header nav ul ul > li:last-child{
 /* PAGE - HOME */
 /* PAGE - HOME END */
 
-/* PAGE - ABOUT US */
-/* PAGE - ABOUT US END */
+/* PAGE - REGISTER */
+.usebootstrap li .caret{
+	position: relative;
+	top: -1.2em;
+	left: -0.45em;
+}
+
+.usebootstrap .caret{
+	border-top: 6px solid;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	
+}
+/* PAGE - REGISTER END */
 
 /* PAGE - CONTACT US */
 /* PAGE - CONTACT US END */

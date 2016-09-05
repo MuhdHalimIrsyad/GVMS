@@ -29,9 +29,6 @@ if(session_id() == '') {
 	<script type="text/javascript" src="js/datepicker/jquery-ui.js"></script>
 	<script type="text/javascript" src="main.js"></script>
 	
-
-		
-	
 </head>
 <header id="navbar" class="row collapse">
 
@@ -41,7 +38,7 @@ if(session_id() == '') {
 	{
 	?>
 	<div class="small-8 columns">
-		<h1><a href="#">Volunteer Management System</a></h1>
+		<h1><a href="./search.php">Volunteer Management System</a></h1>
 	</div>
 	<div class="small-4 columns">
 	<?php

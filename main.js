@@ -34,4 +34,23 @@ jQuery(document).ready(function($){
 			}	
 		}
 	});
+	$('#areaOfInterest').multiselect({
+		includeSelectAllOption: true,
+		enableFiltering: true,
+		enableClickableOptGroups: true,
+		enableCollapsibleOptGroups: true,
+		includeSelectAllOption: true,
+		enableCaseInsensitiveFiltering: true,
+		nonSelectedText: "Select your abilities/interest",
+		/*
+		onChange: function(option, checked) {
+			var interest = $('#areaOfInterest option:selected');
+			var selected = [];
+			$(brands).each(function(index, interest){
+				selected.push([$(this).val()]);
+			});
+			
+		}
+		*/
+	});
 });
