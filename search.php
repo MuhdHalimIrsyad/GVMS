@@ -83,7 +83,7 @@
 
 					<tbody>
 						<?php
-					include 'dbConnection.php';
+								include 'dbConnection.php';
 								$query = 'SELECT * FROM project';
 
 								$rs = pg_query($con, $query) or die (pg_last_error($con));
