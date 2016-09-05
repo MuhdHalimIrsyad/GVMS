@@ -11,7 +11,7 @@
 	</head>
 	
 	<body>
-		<select id="areaOfInterest" multiple="multiple" name="areaOfInterest[]">
+		<select name="areaOfInterest[]" id="areaOfInterest" multiple="multiple">
 		<?php
 		
 		$host = "localhost"; 
@@ -27,10 +27,10 @@
 		
 		while ($distinctName = pg_fetch_array($distinctRs)) {
 			echo "<optgroup label='$distinctName[category]'>";
-			$query = 'SELECT name FROM skillDefinition WHERE category = '. "'" . $distinctName['category'] . "'"; 
+			$query = 'SELECT * FROM skillDefinition WHERE category = '. "'" . $distinctName['category'] . "'"; 
 			$rs = pg_query($con, $query) or die (pg_last_error($con)); 
 			while ($row = pg_fetch_array($rs)) {
-				echo "<option value='$row[name]'>$row[name]</option>";		
+				echo "<option value=$row[skillid]>$row[name]</option>";		
 			}
 			echo "</optgroup>";
 		}	

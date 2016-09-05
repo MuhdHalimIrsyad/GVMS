@@ -16,12 +16,13 @@ if(count($_POST)>0) {
 	
 	if(isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['password'])
 		&& !empty($_POST['password'])) {
-	
-		if (emailExists($_POST['email']) > 0) {
+
+		$userId = emailExists($_POST['email']);
+		if ($userId != -1) {
 			if (checkPassword($_POST['email'], $_POST['password']) == 1) {
 				$_SESSION['email'] = $_POST['email'];
 				$_SESSION['logged']='yes';
-				
+				$_SESSION['userId'] = $userId;
 				header("Location: search.php");
 			}else {
 				array_push($errorArray,"Email or password invalid.");

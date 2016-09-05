@@ -37,7 +37,7 @@ if(session_id() == '') {
 
 <?php 
 	// Redha: note no need to use echos to print html, you can weave in/out of php like this
-	if(!isset($_SESSION['logged']) || !$_SESSION['logged']=='yes') 
+	if(!isset($_SESSION['logged']) || !$_SESSION['logged']=='yes')
 	{
 	?>
 	<div class="small-8 columns">

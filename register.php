@@ -100,13 +100,13 @@
 			
 			<div class=row>
 				<div class="large-3 columns" >Referral ID:</div>
-				<div class="large-5 columns"><input type="text" name="referal"></div>	
+				<div class="large-5 columns"><input type="text" name="referral"></div>	
 				<div class="large-4 columns"></div>
 			</div>
 			
 			<div class="row">
 					
-				<div class="large-12 columns"><input class="button radius" type="submit" value="Register"></div>
+				<div class="large-12 columns"><input class="button radius" type="submit" value="register" name='register'></div>
 			</div>
 		</div>
 		</form>
