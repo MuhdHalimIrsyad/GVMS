@@ -1,7 +1,7 @@
 <?php
 	$warning = "dd";
 	include 'topBar.php';
-	include 'project.php';
+	include 'function/project.php';
 	if(session_id() == '') {
 		session_start();
 }
@@ -83,7 +83,7 @@
 
 					<tbody>
 						<?php
-								include 'dbConnection.php';
+								include 'function/dbConnection.php';
 								$query = 'SELECT * FROM project';
 
 								$rs = pg_query($con, $query) or die (pg_last_error($con));

@@ -2,7 +2,7 @@
 
     function getProject($projectID) {
 
-        include 'dbConnection.php';
+        include 'function/dbConnection.php';
     
         $query = "SELECT * FROM project WHERE projectid = ".$projectID.";";
         
@@ -34,7 +34,7 @@
     
     function getProjectOwner($projectID) {
         
-        include 'dbConnection.php';
+        include 'function/dbConnection.php';
         
         $query = "SELECT * FROM projectownership WHERE projectid = ".$projectID.";";
         
@@ -52,7 +52,7 @@
     
     function getProjectSkillID($projectID) {
         
-        include 'dbConnection.php';
+        include 'function/dbConnection.php';
         
         $query = "SELECT skillid FROM projectSkillRequired WHERE projectid = ".$projectID.";";
         
@@ -69,7 +69,7 @@
     
     function getProjectSkillRequired($projectID) {
         
-        include 'dbConnection.php';
+        include 'function/dbConnection.php';
         
         $query = "SELECT * FROM (SELECT psr.skillid FROM projectSkillRequired psr WHERE psr.projectid = ".$projectID.") AS projectSR, skillDefinition s WHERE"
                 . " projectSR.skillid = s.skillid;";
@@ -115,7 +115,7 @@
     
     function projectApplication($projectid, $skillid, $userid, $description) {
         
-        include 'dbConnection.php';
+        include 'function/dbConnection.php';
         
         $query = "INSERT INTO volunteerApp(projectid, skillid, userid, appstatus, appdescription) VALUES (".$projectid.
                 ", ".$skillid.", ".$userid.", 'Processing', '".$description."');";
@@ -132,8 +132,8 @@
     
     function showProjectStatus($email, $projectid, $skillid) {
         
-        include 'dbConnection.php';
-        include 'users.php';
+        include 'function/dbConnection.php';
+        include 'function/users.php';
         
         $userid = emailExists($email);
         

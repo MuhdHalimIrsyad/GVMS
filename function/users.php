@@ -2,7 +2,7 @@
 //$num_cols = pg_num_fields($rs);
 
 function emailExists($email) {
-	include 'dbConnection.php'; 
+	include 'function/dbConnection.php';
 	
 	$query = 'SELECT * FROM users WHERE emailaddress = ' . "'" . $email . "'";
 
@@ -21,7 +21,7 @@ function emailExists($email) {
 	
 function checkPassword($email, $password) {
 	
-	include 'dbConnection.php';
+	include 'function/dbConnection.php';
 	
 	$query = 'SELECT * FROM users WHERE emailaddress = ' . "'" . $email . "'";
 
@@ -42,7 +42,7 @@ function checkPassword($email, $password) {
 
 function createVolunteer($firstName, $lastName, $dob, $email, $password, $photo, $occupation, $bio, $areaOfInterest, $resume, $linkedIn, $contactNo, $referralID) {
 	
-	include 'dbConnection.php';
+	include 'function/dbConnection.php';
 	
 	$query = "INSERT INTO users VALUES(DEFAULT, '" . $firstName . "', '" . $lastName . "', '" . $email . "', '" . password_hash($password, PASSWORD_BCRYPT) . "',DEFAULT,'"
 	. "volunteer'," . "NULL) RETURNING userid";

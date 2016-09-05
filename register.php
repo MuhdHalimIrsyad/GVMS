@@ -1,7 +1,7 @@
 <html>
 	<?php
 	$warning = "";
-	include 'doRegister.php';
+	include 'function/doRegister.php';
 	include_once('topBar.php')
 	?>
 	

@@ -2,7 +2,7 @@
 <select id="searchDistrict" multiple="multiple" name="select[]">
 		<?php
 		
-		include 'dbConnection.php';
+		include 'function/dbConnection.php';
 		
 		$queryDistinctDistrict = 'SELECT DISTINCT district FROM location ORDER BY district';
 		

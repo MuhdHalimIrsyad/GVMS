@@ -1,7 +1,7 @@
 <?php
 
 if(count($_POST)>0) {
-	include 'users.php';
+	include 'function/users.php';
 	
 	$errorArray = array();
 	$photoFormatAllowed = array('gif', 'png', 'jpg');
