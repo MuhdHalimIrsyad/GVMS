@@ -1,6 +1,6 @@
 <?php
 	$warning = "dd";
-	include 'topBar.php';
+	include 'header.php';
 	include 'function/project.php';
 	if(session_id() == '') {
 		session_start();
@@ -21,7 +21,7 @@
 			<div class="small-8 columns text-center">
 				<input type="text" id="searchBox" placeholder="Enter keyword(s) to narrow your search results">
 				<div class="text-center">
-					<a href="#" class="button" style="width: 60%">Toggle advanced search</a>
+					<a id="advsearchbutton" href="#" class="button" style="width: 60%">Toggle advanced search</a>
 				</div>
 			</div>
 			<div class="small-2 columns"></div>
@@ -29,7 +29,7 @@
 			
 		<div class="row">
 			<div class="small-12 columns">
-				<div class="panel advsearch">
+				<div class="panel advsearch" style="display:none">
 					<div class="row">
 						<div class="small-4 columns"></div>
 						<div class="small-2 columns">Start Date:<input type="text" id="startDate" name="startDate"></div>

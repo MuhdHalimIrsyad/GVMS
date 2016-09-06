@@ -104,7 +104,7 @@ header#navbar{
 	display: table-cell;
 	vertical-align: middle;
 /*	min-width: 5.313em;*/
-	padding: 0 .5em;
+	padding: 0 .46em;
 	height: 3.125em;
 	text-align: center;
 	font-weight: bold;
@@ -176,6 +176,9 @@ header nav ul ul > li:last-child{
 #main .multiselect{
 	width: 100%;
 }
+#main .advsearch{
+	width: 100% !important;
+}
 #main #searchbox,
 #main .advsearch input{
 	text-align: center;
@@ -213,7 +216,7 @@ header nav ul ul > li:last-child{
 
 /* UTILITY CLASSES */
 .margin0{ margin:0 }
-.inlineb{ display:inline-block !important; }
+.inlineb{ display:inline-block; }
 .blockwidth{ width: 100%; }
 .textuppercase{ text-transform: uppercase; }
 .textbold{ font-weight: bold; }

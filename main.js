@@ -53,4 +53,8 @@ jQuery(document).ready(function($){
 		}
 		*/
 	});
+	
+	$("#advsearchbutton").click(function(){
+		$(".panel.advsearch").toggle(500);
+	});
 });

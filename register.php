@@ -2,7 +2,7 @@
 	<?php
 	$warning = "";
 	include 'function/doRegister.php';
-	include_once('topBar.php')
+	include_once('header.php')
 	?>
 	
 	<body>
