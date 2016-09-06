@@ -1,6 +1,18 @@
 <?php
 //$num_cols = pg_num_fields($rs);
 
+function checkUserId($userId) {
+	include 'function/dbConnection.php';
+
+	$query = "SELECT * FROM users WHERE userid = $userId";
+	$rs = pg_query($con, $query) or die (pg_last_error($con));
+
+	$num_row = pg_num_rows($rs);
+	pg_close($con);
+	return $num_row;
+}
+
+
 function emailExists($email) {
 	include 'function/dbConnection.php';
 	

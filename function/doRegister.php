@@ -10,7 +10,7 @@ if(count($_POST)>0) {
 	$photo = "NULL";
 	
 	/*
-	if(isset($_POST['linkedInUrl']) || !empty($_POST['linkedInUrl']) && !filter_var($_POST['linkedInUrl'], FILTER_VALIDATE_URL) === true) {
+	if(isset($_POST['linkedInUrl']) && !empty($_POST['linkedInUrl']) && !preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$_POST['linkedInUrl'])) {
 		array_push($errorArray, "Please enter a valid URL.");
 	}
 	*/
@@ -53,6 +53,22 @@ if(count($_POST)>0) {
 						break 1;
 				}
 		}
+		if (isset($_POST['referral']) && !empty($_POST['referral']) && checkUserId($_POST['referral']) == 0) {
+			array_push($errorArray,"Referral ID does not exist.");
+		}
+		if (strlen($_POST['password']) < 6) {
+			array_push($errorArray,"Password must be more than 6 character!");
+		}elseif (strcmp($_POST['cfmPassword'], $_POST['password']) != 0) {
+			array_push($errorArray,"Password and retype password is not the same.");
+		}
+
+		$options = array(
+			'options' => array('min_range' => 0)
+		);
+		if (isset($_POST['contactNo']) && !empty($_POST['contactNo']) && filter_var($_POST['contactNo'], FILTER_VALIDATE_INT, $options) === FALSE) {
+			array_push($errorArray,"Please enter a valid contact number.");
+		}
+
 		if (empty($errorArray) === true) {
 			if (emailExists($_POST['email']) != -1) {
 				array_push($errorArray,"Sorry, the email address " . $_POST['email'] . " is already in used.");
