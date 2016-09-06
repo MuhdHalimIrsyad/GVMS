@@ -6,7 +6,7 @@
 	?>
 	
 	<div class="row">
-		<div class="large-12 columns text-center">
+		<div class="small-12 columns text-center">
 			<h2>Volunteer Login</h2>
 			<br>
 		</div>
@@ -32,8 +32,12 @@
 							<input type="password" name="password">
 						</div>
 						
+						<div class="small-12 columns text-center">
+							<input class="button radius" type="submit" value="Log in" style="width:50%">
+						</div>
+						
 						<div class="small-4 columns"></div>
-						<div class="small-8 columns">
+						<div class="small-8 columns text-right">
 							<a href="#">Forget your password?</a>
 						</div>
 					</div>
@@ -42,5 +46,3 @@
 		</div>
 		<div class="small-2 columns"></div>
 	</div>
-
-	

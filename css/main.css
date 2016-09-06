@@ -222,6 +222,7 @@ header nav ul ul > li:last-child{
 .textbold{ font-weight: bold; }
 .textnormal{ font-weight: normal; }
 .textred { color:red; }
+.textunderline { text-decoration: underline; }
 .bluebg{ background-color: #007EB7; color: white !important; }
 .required:before {
 	content: "* ";
