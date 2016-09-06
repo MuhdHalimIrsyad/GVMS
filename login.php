@@ -46,3 +46,5 @@
 		</div>
 		<div class="small-2 columns"></div>
 	</div>
+	
+<?php include 'footer.php'; ?>
