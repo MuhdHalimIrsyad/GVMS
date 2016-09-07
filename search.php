@@ -2,6 +2,7 @@
 	$warning = "dd";
 	include 'header.php';
 	include 'function/project.php';
+	include 'areaOfInterest/areaOfInterest.php';
 	if(session_id() == '') {
 		session_start();
 }
@@ -41,6 +42,10 @@
 					<div class="small-4 columns"><input type="text" id="searchSupervisor" placeholder="Supervisor's name"></div>
 					<div class="small-4 columns"><div class="usebootstrap"><?php include 'location.php'; ?></div></div>
 				</div>
+
+				<div class="row">
+					<div class="small-4 columns"><div class="usebootstrap"><?php createAreaOfInterest("search")?></div></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -60,7 +65,7 @@
 						<th>End date</th>
 						<th>Location</th>
 						<th>District</th>
-
+						<th>Skill Set Required</th>
 					</tr>
 				</thead>
 
@@ -111,6 +116,16 @@
 											echo "<td>".$row1['name']."</td>
 												<td>".$row1['district']."</td>";
 										}
+										$skillSetArray = getProjectSkillRequired($row['projectid']);
+										$skillSet = "";
+										for ($x = 0; $x < count($skillSetArray); $x++) {
+											if ($x != count($skillSetArray) - 1) {
+												$skillSet .= $skillSetArray[$x] . ", ";
+											}else {
+												$skillSet .= $skillSetArray[$x];
+											}
+										}
+										echo "<td>".$skillSet."</td>";
 								echo "</tr>";
 
 							}
@@ -140,34 +155,6 @@
 		$( "#supervisor" ).fadeToggle( "slow", "linear" );
 		$( "#location" ).fadeToggle( "slow", "linear" );		
 		});
-
-		/*
-		$(document).ready(function() {
-			// Setup - add a text input to each footer cell
-			$('#project tfoot th').each( function () {
-				var title = $(this).text();
-				$(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-			} );
-
-			// DataTable
-			var table = $('#project').DataTable();
-
-			// Apply the search
-			table.columns().every( function () {
-				var that = this;
-
-				$( 'input', this.footer() ).on( 'keyup change', function () {
-					if ( that.search() !== this.value ) {
-						that
-							.search( this.value )
-							.draw();
-					}
-				} );
-			} );
-		} );
-		*/
-
-
 
 		var table = $('#project').DataTable();
 
@@ -211,19 +198,13 @@
 			table.draw();
 		});
 
-		/*
-		$(document).ready(function() {
-			  // Add event listeners to the two range filtering inputs
-			  $('#startDate').keyup( function() { table.draw(); } );
-			$('#endDate').keyup( function() { table.draw(); } );
-		  } );
-		*/
 		$.fn.dataTableExt.afnFiltering.push(
 			function( oSettings, aData, iDataIndex ) {
 				var iFini = document.getElementById('startDate').value;
 				var iFfin = document.getElementById('endDate').value;
-				var iStartDateCol = 5;
-				var iEndDateCol = 6;
+
+				var iStartDateCol = table.column(':contains(Start date)').index();
+				var iEndDateCol = table.column(':contains(End date)').index();
 
 				iFini=iFini.substring(0,2) + iFini.substring(3,5)+ iFini.substring(6,10)
 				iFfin=iFfin.substring(0,2) + iFfin.substring(3,5)+ iFfin.substring(6,10)       

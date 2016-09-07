@@ -1,6 +1,7 @@
 <?php
 $warning = "";
 include 'function/doRegister.php';
+include 'areaOfInterest/areaOfInterest.php';
 include_once('header.php')
 ?>
 <div class="row">
@@ -70,7 +71,7 @@ include_once('header.php')
 
 	<div class=row>
 		<div class="large-3 columns" >Abilities / Area Of Interest:</div>
-		<div class="large-1 columns"><div class="usebootstrap"><?php include_once('areaOfInterest/areaOfInterest.php') ?></div></div>	
+		<div class="large-1 columns"><div class="usebootstrap"><?php createAreaOfInterest("register") ?></div></div>
 		<div class="large-4 columns"></div>
 	</div>
 	<br>

@@ -22,7 +22,7 @@ jQuery(document).ready(function($){
 			if (selected.length > 0) {
 				var mergedSelected = selected.join('|');
 				table
-				.columns( 8 )
+				.columns( ':contains(District)' )
 				.search(mergedSelected,true)
 				.draw();
 				console.log(selected);
@@ -42,16 +42,27 @@ jQuery(document).ready(function($){
 		includeSelectAllOption: true,
 		enableCaseInsensitiveFiltering: true,
 		nonSelectedText: "Select your abilities/interest",
-		/*
 		onChange: function(option, checked) {
-			var interest = $('#areaOfInterest option:selected');
+			var interests = $('#areaOfInterest option:selected');
 			var selected = [];
-			$(brands).each(function(index, interest){
+			$(interests).each(function(index, interest){
 				selected.push([$(this).val()]);
 			});
-			
+
+			if (selected.length > 0) {
+				var mergedSelected = selected.join('|');
+				console.log(mergedSelected);
+				table
+					.columns( ':contains(Skill Set Required)' )
+					.search(mergedSelected,true)
+					.draw();
+			} else {
+				table
+					.columns( '' )
+					.search( '' )
+					.draw();
+			}
 		}
-		*/
 	});
 	
 	$("#advsearchbutton").click(function(){
