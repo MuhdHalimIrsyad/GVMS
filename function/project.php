@@ -2,7 +2,7 @@
 
     function getProject($projectID) {
 
-        include 'function/dbConnection.php';
+        include 'dbConnection.php';
     
         $query = "SELECT * FROM project WHERE projectid = ".$projectID.";";
         
@@ -34,7 +34,7 @@
     
     function getProjectOwner($projectID) {
         
-        include 'function/dbConnection.php';
+        include 'dbConnection.php';
         
         $query = "SELECT * FROM projectownership WHERE projectid = ".$projectID.";";
         
@@ -52,7 +52,7 @@
     
     function getProjectSkillID($projectID) {
         
-        include 'function/dbConnection.php';
+        include 'dbConnection.php';
         
         $query = "SELECT skillid FROM projectSkillRequired WHERE projectid = ".$projectID.";";
         
@@ -69,7 +69,7 @@
     
     function getProjectSkillRequired($projectID) {
         
-        include 'function/dbConnection.php';
+        include 'dbConnection.php';
         
         $query = "SELECT * FROM (SELECT psr.skillid FROM projectSkillRequired psr WHERE psr.projectid = ".$projectID.") AS projectSR, skillDefinition s WHERE"
                 . " projectSR.skillid = s.skillid;";
@@ -115,7 +115,7 @@
     
     function projectApplication($projectid, $skillid, $userid, $description) {
         
-        include 'function/dbConnection.php';
+        include 'dbConnection.php';
         
         $query = "INSERT INTO volunteerApp(projectid, skillid, userid, appstatus, appdescription) VALUES (".$projectid.
                 ", ".$skillid.", ".$userid.", 'Processing', '".$description."');";
@@ -130,32 +130,36 @@
         
     }
     
-    function showProjectStatus($email, $projectid, $skillid) {
+    function displayProject($projectid) {
         
-        include 'function/dbConnection.php';
-        include 'function/users.php';
+        include 'dbConnection.php';
         
-        $userid = emailExists($email);
+        $projectArray = [];
+        $projectArray['detail'] = getProject($projectid);
+        $projectArray['owner'] = getProjectOwner($projectid);
+        $projectArray['location'] = projectLocation($projectid);
         
-        if ($userid != -1) {
-            $query = "SELECT * FROM volunteerapp WHERE projectid = ".$projectid." AND skillid = ".$skillid." AND userid = ".$userid.";";
-        
+        if ($_SESSION['userId'] != NULL) {
+            $query = "SELECT * FROM volunteerapp WHERE projectid = ".$projectid." AND userid = ".$_SESSION['userId'].";";
             $rs = pg_query($con, $query) or die (pg_last_error($con));
-        
-            $projectDetail = getProject($projectid);
-            $projectOwner = getProjectOwner($projectid);
-            $projectLocation = projectLocation($projectid);
-        
-            if (pg_num_rows($rs)) {
-                //Redha, I don't know how you want to display. But this side is for volunteer who have applied for the project
+            
+            if (pg_num_rows($rs) != 0) {
+                for ($i = 0; $i < pg_num_rows($rs); $i++) {
+                    $row = pg_fetch_array($rs);
+                    $skillNameQuery = "SELECT name FROM skillDefinition WHERE skillid = ".$row['skillid'].";";
+                    $skillNameResult = pg_query($con, $skillNameQuery);
+                    $projectArray['status'][$i]['skillname'] = pg_fetch_array($skillNameResult)['name'];
+                    $projectArray['status'][$i]['appstatus'] = $row['appstatus'];
+                }
             } else {
-                //This side is for volunteer who have yet to register for the project
-                $projectSkillID = getProjectSkillID($projectid);
-                $projectSkill = getProjectSkillRequired($projectid);
+                $projectArray['skillId'] = getProjectSkillID($projectid);
+                $projectArray['skillRequired'] = getProjectSkillRequired($projectid);
             }
-        }
+        } 
         
-        
+        return $projectArray;
     }
+    
+  
 ?>
 
