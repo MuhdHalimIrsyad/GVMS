@@ -97,7 +97,7 @@
 			<h3>Application Form</h3>
                                     <p><label>Desired role/position in project:</label></p>
                                     <div class="usebootstrap">
-                                        <select name="projectApp[]" class="areaOfInterest" multiple="multiple">
+                                        <select id="projectApp" name="projectApp[]" class="areaOfInterest" multiple="multiple">
                                             <?php
                                                 
                                                 for ($i = 0; $i < count($project['skillId']); $i++) {

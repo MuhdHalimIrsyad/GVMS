@@ -65,6 +65,11 @@ jQuery(document).ready(function($){
 			}
 		}
 	});
+
+
+	$('#projectApp').multiselect({
+		nonSelectedText: "Select position applying for"
+	});
 	
 	$("#advsearchbutton").click(function(){
 		$(".panel.advsearch").toggle(500);
