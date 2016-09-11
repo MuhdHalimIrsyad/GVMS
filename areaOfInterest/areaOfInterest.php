@@ -18,9 +18,9 @@ function createAreaOfInterest($type){
 		$rs = pg_query($con, $query) or die (pg_last_error($con));
 		while ($row = pg_fetch_array($rs)) {
 			if ($type == "register") {
-				echo "<option value=$row[skillid]>$row[name]</option>";
+				echo "<option value='$row[skillid]'>$row[name]</option>";
 			}else {
-				echo "<option value=$row[name]>$row[name]</option>";
+				echo "<option value='$row[name]'>$row[name]</option>";
 			}
 		}
 		echo "</optgroup>";

@@ -86,11 +86,8 @@
     }
 
     function projectLocation($projectID) {
-	
-	$host = "localhost"; 
-	$user = "postgres"; 
-	$pass = "hometown"; 
-	$db = "gamified"; 
+
+        include 'dbConnection.php';
 
 	$con = pg_connect("host=$host dbname=$db user=$user password=$pass")
             or die ("Could not connect to server\n" . pg_last_error()); 

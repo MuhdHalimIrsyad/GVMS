@@ -25,7 +25,7 @@ jQuery(document).ready(function($){
 				.columns( ':contains(District)' )
 				.search(mergedSelected,true)
 				.draw();
-				console.log(selected);
+				//console.log(selected);
 			} else {
 				table
 				.columns( '' )
@@ -46,7 +46,8 @@ jQuery(document).ready(function($){
 			var interests = $('#areaOfInterest option:selected');
 			var selected = [];
 			$(interests).each(function(index, interest){
-				selected.push([$(this).val()]);
+				//console.log([$(this).val()]);
+				selected.push("(" + [$(this).val()] + ")");
 			});
 
 			if (selected.length > 0) {
