@@ -23,7 +23,7 @@ jQuery(document).ready(function($){
 				var mergedSelected = selected.join('|');
 				table
 				.columns( ':contains(District)' )
-				.search(mergedSelected,true)
+				.search(mergedSelected,true,false)
 				.draw();
 				//console.log(selected);
 			} else {
@@ -52,10 +52,10 @@ jQuery(document).ready(function($){
 
 			if (selected.length > 0) {
 				var mergedSelected = selected.join('|');
-				console.log(mergedSelected);
+				//console.log(mergedSelected);
 				table
 					.columns( ':contains(Skill Set Required)' )
-					.search(mergedSelected,true)
+					.search(mergedSelected,true,false)
 					.draw();
 			} else {
 				table
