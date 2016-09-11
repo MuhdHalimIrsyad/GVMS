@@ -1,0 +1,11 @@
+diff a/main.js b/main.js	(rejected hunks)
+@@ -46,7 +46,8 @@
+ 			var interests = $('#areaOfInterest option:selected');
+ 			var selected = [];
+ 			$(interests).each(function(index, interest){
+-				selected.push([$(this).val()]);
++				//console.log([$(this).val()]);
++				selected.push("(" + [$(this).val()] + ")");
+ 			});
+ 
+ 			if (selected.length > 0) {

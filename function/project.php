@@ -13,7 +13,7 @@
         while ($projectRow = pg_fetch_array($rs)) {
             $projectArray['name'] = $projectRow['name'];
             $projectArray['startdate'] = date("d/m/Y", strtotime($projectRow['startdate']));
-            if (strtotime($projectRow['enddate']) == -1) {
+            if (strtotime($projectRow['enddate']) == FALSE) {
                 $projectArray['enddate'] = "-";
             } else {
                 $projectArray['enddate'] = date("d/m/Y", strtotime($projectRow['enddate']));
@@ -36,14 +36,17 @@
         
         include 'dbConnection.php';
         
+        $query = "SELECT * FROM (SELECT userid FROM projectownership WHERE projectid = ".$projectID.") AS pOS, users u WHERE pOS.userid = u.userid";
         $query = "SELECT * FROM projectownership WHERE projectid = ".$projectID.";";
         
         $rs = pg_query($con, $query) or die (pg_last_error($con));
         
         $projectOwnerArray = [];
+        $i = 0;
         
         while ($projectOwnerRow = pg_fetch_array($rs)) {
-            array_push($projectOwnerArray, $projectOwnerRow['userid']);
+            $projectOwnerArray[$i] = $projectOwnerRow['firstname']." ".$projectOwnerRow["lastname"];
+            $i++;
         }
         
         return $projectOwnerArray;
@@ -59,9 +62,11 @@
         $rs = pg_query($con, $query) or die (pg_last_error($con));
         
         $projectSkillIDArray = [];
+        $i = 0;
         
         while ($projectSkillIDRow = pg_fetch_array($rs)) {
-            array_push($projectSkillIDArray, $projectSkillIDRow['skillid']);
+            $projectSkillIDArray[$i] =  $projectSkillIDRow['skillid'];
+            $i++;
         }
         
         return $projectSkillIDArray;
@@ -77,12 +82,34 @@
         $rs = pg_query($con, $query) or die (pg_last_error($con));
         
         $projectSkillArray = [];
+        $i = 0;
         
         while ($projectSkillRow = pg_fetch_array($rs)) {
-            array_push($projectSkillArray, $projectSkillRow['name']);
+            $projectSkillArray[$i] = $projectSkillRow['name'];
+            $i++;
         }
         
         return $projectSkillArray;
+    }
+    
+    function getProjectLocation($projectID) {
+        
+        include 'dbConnection.php';
+        
+        $query = "SELECT * FROM (SELECT pl.locationid FROM projectlocation pl WHERE pl.projectid = ".$projectID.") AS projectL, location l WHERE projectL.locationid = "
+                . "l.locationid;";
+        
+        $rs = pg_query($con, $query) or die(pg_last_error($con));
+        
+        $projectLocationArray = [];
+        $i = 0;
+        
+        while ($projectLocationRow = pg_fetch_array($rs)) {
+            $projectLocationArray[$i] = $projectLocationRow['name'];
+            $i++;
+        }
+        
+        return $projectLocationArray;
     }
 
     function projectLocation($projectID) {
@@ -134,7 +161,7 @@
         $projectArray = [];
         $projectArray['detail'] = getProject($projectid);
         $projectArray['owner'] = getProjectOwner($projectid);
-        $projectArray['location'] = projectLocation($projectid);
+        $projectArray['location'] = getProjectLocation($projectid);
         
         if ($_SESSION['userId'] != NULL) {
             $query = "SELECT * FROM volunteerapp WHERE projectid = ".$projectid." AND userid = ".$_SESSION['userId'].";";
