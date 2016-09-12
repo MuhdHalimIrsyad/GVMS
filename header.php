@@ -8,6 +8,21 @@ if(session_id() == '') {
 <head>
 	<title>Volunteer Management System</title>
 	<link rel="stylesheet" href="css/normalize.css">
+	<style type="text/css">
+		ul.navigation
+		{
+			background:#fff;
+		}
+		ul.navigation li a
+		{
+			text-decoration:none;
+		}
+		ul.navigation li a.on
+		{
+			background:#09cc2f;
+			padding:2px 6px;
+		}
+	</style>
 <!--	<link rel="stylesheet" href="css/foundation.css">-->
 <!--	<script src="js/vendor/modernizr.js"></script>-->
 
@@ -54,9 +69,9 @@ if(session_id() == '') {
 					?>
 					<div class="small-6 columns">
 							<nav>
-								<ul>
+								<ul class="navigation">
 									<li><a href="#">Dashboard</a></li>
-									<li class="current-page"><a href="search.php">Search</a></li>
+									<li><a href="search.php">Search</a></li>
 									<li><a href="#">Applications</a></li>
 									<li><a href="#">Invitation</a></li>
 									<li><a href="#">People</a></li>
@@ -95,3 +110,18 @@ if(session_id() == '') {
 			</header>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+	$(function(){
+		var $page = location.pathname.substring(location.pathname.lastIndexOf("/") + 1).replace(".php","");
+		$('ul.navigation li a').each(function(){
+			var $href = $(this).attr('href').toLowerCase().replace(".php","");
+			console.log($href);
+			if ( ($href == $page) || ($href == '') ) {
+				$(this).addClass('on');
+			} else {
+				$(this).removeClass('on');
+			}
+		});
+	});
+</script>
