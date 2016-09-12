@@ -20,7 +20,7 @@
             }
             $projectArray['repetition'] = $projectRow['repetition'];
             $projectArray['description'] = $projectRow['description'];
-            $projectArray['visiblity'] = $projectRow['visiblity'];
+            $projectArray['visibility'] = $projectRow['visiblity'];
             if ($projectRow['noofpersonnel'] == NULL) {
                 $projectArray['noofpersonnel'] = 0;
             } else {
@@ -37,7 +37,6 @@
         include 'dbConnection.php';
         
         $query = "SELECT * FROM (SELECT userid FROM projectownership WHERE projectid = ".$projectID.") AS pOS, users u WHERE pOS.userid = u.userid";
-        $query = "SELECT * FROM projectownership WHERE projectid = ".$projectID.";";
         
         $rs = pg_query($con, $query) or die (pg_last_error($con));
         
@@ -137,23 +136,6 @@
 	return false;
     }
     
-    function projectApplication($projectid, $skillid, $userid, $description) {
-        
-        include 'dbConnection.php';
-        
-        $query = "INSERT INTO volunteerApp(projectid, skillid, userid, appstatus, appdescription) VALUES (".$projectid.
-                ", ".$skillid.", ".$userid.", 'Processing', '".$description."');";
-        
-        $rs = pg_query($con, $query) or die (pg_last_error($con));
-        
-        if ($rs) {
-            return TRUE;
-        }
-        
-        return FALSE;
-        
-    }
-    
     function displayProject($projectid) {
         
         include 'dbConnection.php';
@@ -162,9 +144,11 @@
         $projectArray['detail'] = getProject($projectid);
         $projectArray['owner'] = getProjectOwner($projectid);
         $projectArray['location'] = getProjectLocation($projectid);
+        $projectArray['skillId'] = getProjectSkillID($projectid);
+        $projectArray['skillRequired'] = getProjectSkillRequired($projectid);
         
         if ($_SESSION['userId'] != NULL) {
-            $query = "SELECT * FROM volunteerapp WHERE projectid = ".$projectid." AND userid = ".$_SESSION['userId'].";";
+            $query = "SELECT * FROM volunteerapp WHERE projectid = ".$projectid." AND userid = ".$_SESSION['userId']." AND appstatus NOT LIKE 'Cancelled';";
             $rs = pg_query($con, $query) or die (pg_last_error($con));
             
             if (pg_num_rows($rs) != 0) {
@@ -174,11 +158,9 @@
                     $skillNameResult = pg_query($con, $skillNameQuery);
                     $projectArray['status'][$i]['skillname'] = pg_fetch_array($skillNameResult)['name'];
                     $projectArray['status'][$i]['appstatus'] = $row['appstatus'];
+                    $projectArray['status'][$i]['description'] = $row['appdescription'];
                 }
-            } else {
-                $projectArray['skillId'] = getProjectSkillID($projectid);
-                $projectArray['skillRequired'] = getProjectSkillRequired($projectid);
-            }
+            }   
         } 
         
         return $projectArray;
