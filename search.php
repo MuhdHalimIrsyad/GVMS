@@ -88,7 +88,7 @@
 				<tbody>
 					<?php
 							include 'function/dbConnection.php';
-							$query = 'SELECT * FROM project';
+							$query = "SELECT * FROM project";
 
 							$rs = pg_query($con, $query) or die (pg_last_error($con));
 
@@ -116,6 +116,12 @@
 											echo "<td>".$row1['name']."</td>
 												<td>".$row1['district']."</td>";
 										}
+										$numOfLocation = pg_num_rows($queryLocation);
+										if ($numOfLocation == 0 ) {
+											echo "<td></td>
+												<td></td>";
+										}
+
 										$skillSetArray = getProjectSkillRequired($row['projectid']);
 										$skillSet = "";
 										for ($x = 0; $x < count($skillSetArray); $x++) {
